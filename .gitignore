@@ -1,129 +1,500 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+#Name= Sachin Kalra 
+#Author= Madiha Kazmi
+#Date created= 2 december  2022
+#Date last modified= 10 november 2022
+# Purpose:
+# this program will be used by the arnold amazing's branch for taking the orders.
+#first we will ask the user to input his or her details
+print ("welcome to the Arnold's Amazing Eats II .we are here to serve you.")
+print("/nThe purpose of this branch is to fulfill the needs of customers what they expected from us.")
+print("")
+#here we  created an empty dictioary for storing customers information
+while True:
+    try:
+        customerdata={}
 
-# C extensions
-*.so
+        firstname=(input("enter your first name :"))
+        lastname=(input("enter your last name :"))
+        address=(input(" please enter your full delivery address " "(street number, street name, unit if applicable)"))
+        city=(input("enter your city name :"))
+        province=(input("enter you province :"))
+        postalcode=(input("enter your postal code :"))
+        instructions=(input("enter your special instructions for deliveries from this address :"))
+        phonenumber=(input("enter your phone number:"))
+# after getting input we stored it in our dictionary
+        customerdata.update(Name=firstname+lastname,Addrress=address,City=city,Province=province,Postalcode=postalcode,
+        Instuctions=instructions,Phonenumber=phonenumber,)
+        print(customerdata)
+    except ValueError:
+        print("please entter a valid value.")
+        continue
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+#then we will show the user the menu available for the customers
+    print("You pick!  What should Arnold sell?")
+    print()
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+    
+    print("select the number from the menu what do you want")
+    mealsavailable={}
+    print()
+    pizza=("1. pizza  10$")
+    pasta=("2.pasta  20$")
+    noodles=("3. noodles  30$")
+    burger=("4. burger  40$")
+    soyachamp=("5. soyachamp  50$")
+    momos=("6. momos  60$")
+    print('we have 6 types of meals availble')
+    mealsavailable.update(press1=pizza,press2=pasta,press3=noodles,press4=burger,press5=soyachamp,press6=momos)
+    for x  in mealsavailable.values():
+        print(x)
+# it will display the available meals in the  dictionary
+    print(mealsavailable)
+#asking the user choice of meal
+    try:
+        choice=int(input(("enter your choice from 1 to 6 ): ")))
+# asking the quantity from the user
+        quantity=int(input("enter the quantity you need:"))
+        student=str(input("Are you a Student? Y OR N:"))
+#asking user whether it is for delivery or pickup
+        delivery=print("is it for pickup or delivery")
+        delivery=input("press d for delivery and p for pickup:")
+        print(delivery)
+    except ValueError:
+        print("please entter a valid value.")
+        continue
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+    
+#showing the  ordered meal and its quantity in the  dictionary
+    mealsordered={choice: quantity}
+    print(mealsordered)
+    try:
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
+        if choice==1 :
+            if delivery=="d":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+            print(instructions)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("pizza               ",quantity,"         $10      $",(quantity*10))
+        tip=str(input("do you want to give tip to delivery person?[y or n]"))
+        if tip=="y":
+            tipamount=print("if yes please enter the select and enter amount (for eg.1$) 5%(0.50$),10%(1$),15%(1.50$)")
+            tipamount=float(input())
+            if quantity*10 <30 and  tip=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",tipamount)
+                print("delivery charges                       -$", 5)
+                print("10% Student discount                      -$",quantity*10*0.10)
+                print("                           Sub Total      $",quantity*10+5+tipamount)
+                print("                           Tax (13%)      $", quantity*10*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*10)+quantity*10*0.13*0.10)    
+            elif quantity*10> 30 and tip=="y" and  student=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",            tipamount)
+                print("delivery charges                                  -$",     5)
+                print("                           Sub Total      $",quantity*10+5+tipamount)
+                print("delivery fee waived")
+                print("                           Sub Total      $",quantity*10-5+tipamount)
+                print("                           Tax (13%)      $", quantity*10*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*10)+quantity*10*0.13)
+        elif tip=="N":
+            print("its okey if you dont want to give tip") 
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print(address)
+            print(instructions)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("pizza               ",quantity,"         $10      $",(quantity*10))
+            print("delivery charges                       -$", 5)
+            print("                           Sub Total      $",quantity*10+5)
+            print("                           Tax (13%)      $", quantity*10*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*10)+quantity*10*0.13)
+        elif delivery=="p":
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("pizza               ",quantity,"         $10      $",(quantity*10))
+            print("                           Sub Total      $",quantity*10)
+            print("                           Tax (13%)      $", quantity*10*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*10)+quantity*10*0.13)
+    except ValueError:
+        print("please entter a valid value.")
+        continue
+    try:
+        if choice==2 :
+            if delivery=="d":
+                print ("Reciept")
+                print(firstname+lastname)
+            print(phonenumber)
+            print(address)
+            print(instructions)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("pasta               ",quantity,"         $20      $",(quantity*20))
+        tip=str(input("do you want to give tip to delivery person?[y or n]"))
+        if tip=="y":
+            tipamount=print("if yes please enter the select and enter amount (for eg.1$) 5%(0.50$),10%(1$),15%(1.50$)")
+            tipamount=float(input())
+            if quantity*20 <30 and  tip=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",tipamount)
+                print("delivery charges                       -$", 5)
+                print("                           Sub Total      $",quantity*20+5+tipamount)
+                print("                           Tax (13%)      $", quantity*20*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*10)+quantity*10*0.13)    
+            elif quantity*20> 30 and tip=="y" and student=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",            tipamount)
+                print("delivery charges                                  -$",     5)
+                print("10% Student discount                      -$",quantity*20*0.10)
+                print("                           Sub Total      $",quantity*20+5+tipamount)
+                print("delivery fee waived")
+                print("                           Sub Total      $",quantity*20-5+tipamount)
+                print("                           Tax (13%)      $", quantity*20*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*20)+quantity*20*0.13*0.10)
+        elif tip=="N":
+            print("its okey if you dont want to give tip") 
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print(address)
+            print(instructions)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("pasta               ",quantity,"         $20      $",(quantity*20))
+            print("delivery charges                       -$", 5)
+            print("                           Sub Total      $",quantity*20+5)
+            print("                           Tax (13%)      $", quantity*20*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*20)+quantity*20*0.13)
+        elif delivery=="p":
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("pasta               ",quantity,"         $20      $",(quantity*20))
+            print("                           Sub Total      $",quantity*20)
+            print("                           Tax (13%)      $", quantity*20*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*20)+quantity*20*0.13)
+    except ValueError:
+        print("please entter a valid value.")
+        continue
+    try:
+        if choice==3 :
+            if delivery=="d":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("Order                Quantity    Price   Total")
+                print("-----                --------    -----   -----")
+                print("noodles              ",quantity,"         $30      $",(quantity*30))
+        tip=str(input("do you want to give tip to delivery person?[y or n]"))
+        if tip=="y":
+            tipamount=print("if yes please enter the select and enter amount (for eg.1$) 5%(0.50$),10%(1$),15%(1.50$)")
+            tipamount=float(input())
+            if quantity*30 <30 and  tip=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",tipamount)
+                print("delivery charges                       -$", 5)
+                print("                           Sub Total      $",quantity*30+5+tipamount)
+                print("                           Tax (13%)      $", quantity*30*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*30)+quantity*30*0.13)    
+            elif quantity*30> 30 and tip=="y" and student=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",            tipamount)
+                print("delivery charges                                  -$",     5)
+                print("10% Student discount                      -$",quantity*30*0.10)
+                print("                           Sub Total      $",quantity*30+5+tipamount)
+                print("delivery fee waived")
+                print("                           Sub Total      $",quantity*30-5+tipamount)
+                print("                           Tax (13%)      $", quantity*30*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*30)+quantity*30*0.13*0.10)
+        elif tip=="N":
+            print("its okey if you dont want to give tip") 
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print(address)
+            print(instructions)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("noodles             ",quantity,"         $30      $",(quantity*30))
+            print("delivery charges                       -$", 5)
+            print("                           Sub Total      $",quantity*30+5)
+            print("                           Tax (13%)      $", quantity*30*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*30)+quantity*30*0.13)
+        elif delivery=="p":
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("noodles               ",quantity,"         $30      $",(quantity*30))
+            print("                           Sub Total      $",quantity*30)
+            print("                           Tax (13%)      $", quantity*30*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*30)+quantity*30*0.13)
+    except ValueError:
+        print("please entter a valid value.")
+        continue
+    try:
+        if choice==4 :
+            if delivery=="d":
+                print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print(address)
+            print(instructions)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("burgeer               ",quantity,"         $40      $",(quantity*40))
+        tip=str(input("do you want to give tip to delivery person?[y or n]"))
+        if tip=="y":
+            tipamount=print("if yes please enter the select and enter amount (for eg.1$) 5%(0.50$),10%(1$),15%(1.50$)")
+            tipamount=float(input())
+            if quantity*40 <30 and  tip=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",tipamount)
+                print("delivery charges                       -$", 5)
+                print("                           Sub Total      $",quantity*40+5+tipamount)
+                print("                           Tax (13%)      $", quantity*40*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*40)+quantity*40*0.13)    
+            elif quantity*40> 30 and tip=="y" and student=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",            tipamount)
+                print("delivery charges                                  -$",     5)
+                print("10% Student discount                      -$",quantity*40*0.10)
+                print("                           Sub Total      $",quantity*40+5+tipamount)
+                print("delivery fee waived")
+                print("                           Sub Total      $",quantity*40-5+tipamount)
+                print("                           Tax (13%)      $", quantity*40*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*40)+quantity*40*0.13*0.10)
+        elif tip=="N":
+            print("its okey if you dont want to give tip") 
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print(address)
+            print(instructions)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("burger               ",quantity,"         $10      $",(quantity*40))
+            print("delivery charges                       -$", 5)
+            print("                           Sub Total      $",quantity*40+5)
+            print("                           Tax (13%)      $", quantity*40*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*40)+quantity*40*0.13)
+        elif delivery=="p":
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("burger               ",quantity,"         $10      $",(quantity*40))
+            print("                           Sub Total      $",quantity*40)
+            print("                           Tax (13%)      $", quantity*40*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*40)+quantity*40*0.13)
+    except ValueError:
+        print("please entter a valid value.")
+        continue
+    try:
+        if choice==5 :
+            if delivery=="d":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("Order                Quantity    Price   Total")
+                print("-----                --------    -----   -----")
+                print("soyachamp               ",quantity,"         $50      $",(quantity*50))
+            tip=str(input("do you want to give tip to delivery person?[y or n]"))
+            if tip=="y":
+                tipamount=print("if yes please enter the select and enter amount (for eg.1$) 5%(0.50$),10%(1$),15%(1.50$)")
+                tipamount=float(input())
+                if quantity*50 <30 and  tip=="y":
+                    print ("Reciept")
+                    print(firstname+lastname)
+                    print(phonenumber)
+                    print(address)
+                    print(instructions)
+                    print("tip                                   -$",tipamount)
+                    print("delivery charges                       -$", 5)
+                    print("                           Sub Total      $",quantity*50+5+tipamount)
+                    print("                           Tax (13%)      $", quantity*50*0.13)
+                    print("--------------------------------------------------")
+                    print("                           Grand Total    $",(quantity*10)+quantity*10*0.13)    
+                elif quantity*50> 30 and tip=="y" and student=="y":
+                    print ("Reciept")
+                    print(firstname+lastname)
+                    print(phonenumber)
+                    print(address)
+                    print(instructions)
+                    print("tip                                   -$",            tipamount)
+                    print("delivery charges                                  -$",     5)
+                    print("10% Student discount                      -$",quantity*50*0.10)
+                    print("                           Sub Total      $",quantity*50+5+tipamount)
+                    print("delivery fee waived")
+                    print("                           Sub Total      $",quantity*50-5+tipamount)
+                    print("                           Tax (13%)      $", quantity*50*0.13)
+                    print("--------------------------------------------------")
+                    print("                           Grand Total    $",(quantity*50)+quantity*50*0.13*0.10)
+            elif tip=="N":
+                print("its okey if you dont want to give tip") 
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("Order                Quantity    Price   Total")
+                print("-----                --------    -----   -----")
+                print("soyachamp             ",quantity,"         $50      $",(quantity*50))
+                print("delivery charges                       -$", 5)
+                print("                           Sub Total      $",quantity*50+5)
+                print("                           Tax (13%)      $", quantity*50*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*50)+quantity*50*0.13)
+            elif delivery=="p":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print("Order                Quantity    Price   Total")
+                print("-----                --------    -----   -----")
+                print("soyachamp               ",quantity,"         $10      $",(quantity*50))
+                print("                           Sub Total      $",quantity*50)
+                print("                           Tax (13%)      $", quantity*50*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*50)+quantity*50*0.13)
+    except ValueError:
+        print("please entter a valid value.")
+        continue
+    try:
+        if choice==6 :
+            if delivery=="d":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("Order                Quantity    Price   Total")
+                print("-----                --------    -----   -----")
+                print("momos               ",quantity,"         $60      $",(quantity*60))
+        tip=str(input("do you want to give tip to delivery person?[y or n]"))
+        if tip=="y":
+            tipamount=print("if yes please enter the select and enter amount (for eg.1$) 5%(0.50$),10%(1$),15%(1.50$)")
+            tipamount=float(input())
+            if quantity*60 <30 and  tip=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",tipamount)
+                print("delivery charges                       -$", 5)
+                print("                           Sub Total      $",quantity*60+5+tipamount)
+                print("                           Tax (13%)      $", quantity*60*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*60)+quantity*60*0.13)    
+            elif quantity*60> 30 and tip=="y" and student=="y":
+                print ("Reciept")
+                print(firstname+lastname)
+                print(phonenumber)
+                print(address)
+                print(instructions)
+                print("tip                                   -$",            tipamount)
+                print("delivery charges                                  -$",     5)
+                print("10% Student discount                      -$",quantity*60*0.10)
+                print("                           Sub Total      $",quantity*60+5+tipamount)
+                print("delivery fee waived")
+                print("                           Sub Total      $",quantity*60-5+tipamount)
+                print("                           Tax (13%)      $", quantity*60*0.13)
+                print("--------------------------------------------------")
+                print("                           Grand Total    $",(quantity*60)+quantity*60*0.13*0.10)
+        elif tip=="N":
+            print("its okey if you dont want to give tip") 
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print(address)
+            print(instructions)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("momos              ",quantity,"         $10      $",(quantity*60))
+            print("delivery charges                       -$", 5)
+            print("                           Sub Total      $",quantity*60+5)
+            print("                           Tax (13%)      $", quantity*60*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*60)+quantity*60*0.13)
+        elif delivery=="p":
+            print ("Reciept")
+            print(firstname+lastname)
+            print(phonenumber)
+            print("Order                Quantity    Price   Total")
+            print("-----                --------    -----   -----")
+            print("momos               ",quantity,"         $60      $",(quantity*60))
+            print("                           Sub Total      $",quantity*60)
+            print("                           Tax (13%)      $", quantity*60*0.13)
+            print("--------------------------------------------------")
+            print("                           Grand Total    $",(quantity*60)+quantity*60*0.13)
+    except ValueError:
+        print("please entter a valid value.")
+        continue
 
-# Translations
-*.mo
-*.pot
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
 
-# Flask stuff:
-instance/
-.webassets-cache
 
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
